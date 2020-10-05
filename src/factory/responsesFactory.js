@@ -27,7 +27,7 @@ export const createGetItemInformationResponse = (itemInformation, itemDescriptio
 		title, 
 		currency_id, 
 		price, 
-		thumbnail, 
+		pictures,
 		condition, 
 		shipping, 
 		sold_quantity
@@ -36,6 +36,7 @@ export const createGetItemInformationResponse = (itemInformation, itemDescriptio
 	const { plain_text: description } = itemDescription;
 	const [ intenger, decimal = 0 ] = deconstructFloat(price);
 	const categories = createCategories(category);
+	const picture = pictures[0].url;
 
 	return signObj({
 		id,
@@ -45,7 +46,7 @@ export const createGetItemInformationResponse = (itemInformation, itemDescriptio
 			amount: parseInt(intenger),
 			decimals: parseInt(decimal),
 		},
-		picture: thumbnail,
+		picture,
 		condition,
 		free_shipping,
 		sold_quantity,
